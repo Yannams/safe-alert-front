@@ -170,6 +170,10 @@ import Pages500 from "../pages/Utility/pages-500";
 import ContactsGrid from "../pages/Contacts/contacts-grid";
 import ContactsList from "../pages/Contacts/ContactList/contacts-list";
 import ContactsProfile from "../pages/Contacts/ContactsProfile/contacts-profile";
+import { components } from "react-select";
+
+//Safe alert
+import Home from "pages/Safe-alert/Users/Home";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
@@ -319,8 +323,12 @@ const authProtectedRoutes = [
   {
     path: "/",
     exact: true,
-    component: <Navigate to="/dashboard" />,
+    component: <Navigate to="/home"/>,
   },
+
+
+  //Safe-alert
+  {path:"/home", component: <Home/>}
 ];
 
 const publicRoutes = [
