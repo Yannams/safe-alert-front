@@ -16,7 +16,7 @@ export default function Signal({nextStep}) {
                             fontSize: '15px',
                             }}
                         ></i>
-                        </div>
+                    </div>
 
                   
                     <span className="text-danger fs-3 fw-bold">Safe alert</span>

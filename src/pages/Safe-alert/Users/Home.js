@@ -1,25 +1,13 @@
-import { GoogleMap, InfoWindow, LoadScript, Marker } from "@react-google-maps/api";
 import React, { useState } from "react";
-import { Card, CardBody, Col, Row } from "reactstrap";
 import Signal from "./SignalEtapes/Signal";
 import GettingInfo from "./SignalEtapes/GettingInfo";
-import Victims from "./SignalEtapes/Victims";
-import Risks from "./SignalEtapes/Risks";
 import SignalLaunched from "./SignalEtapes/signalLaunched";
 import InfoPerso from "./SignalEtapes/infoPerso";
 import Maps from "./SignalEtapes/Maps";
+import InfoSup from "./SignalEtapes/infoSup";
+import AlertClosed from "./SignalEtapes/AlertClosed";
+import SafeAlertUsersHeader from "./Header/SafeAlertUsersHeader";
 
-const containerStyle = {
-  width: "100%",
-  height: "100%",
-  // position: "absolute",
-  // top: 0, left: 0,
-};
-
-const center = {
-  lat: 37.778519,
-  lng: -122.40564,
-};
 
 
 const Home = () => {
@@ -51,52 +39,42 @@ const Home = () => {
         setStep(step + 1);
     };
 
+      const lastStep = (newParams = {}) => {
+        setStep(step - 1);
+    };
   return (
-    <div className="page-content vh-100">
-        {step > 0 && step <4   && <Row className="mb-5">
-          {[...Array(totalSteps)].map((_, index) => {
-              const isActive = index + 1 <= step; // rend rouge jusqu’à l’étape actuelle
-              return (
-                <Col key={index}>
-                  <div
-                    className={`${isActive ? "bg-danger" : "bg-secondary-subtle"} rounded-pill`}
-                    style={{
-                      width: "100%",
-                      height: "10px",
-                      transition: "background-color 0.3s ease",
-                    }}
-                  ></div>
-                </Col>
-              );
-            })}
-          </Row>
-        }
+    <>
+    <SafeAlertUsersHeader/>
+    <div className={`${step !==4 ?'page-content vh-100':''}`}>
+      
+         
         {step === 0 &&
             <Signal nextStep={nextStep}/>
         }
-          {step === 1 &&
-            <GettingInfo nextStep={nextStep}/>
+        {step === 1 &&
+          <GettingInfo nextStep={nextStep} lastStep={lastStep}/>
         }
 
-          {step === 2 &&
-            <Victims nextStep={nextStep}/>
+        {step === 2 &&
+          <InfoSup nextStep={nextStep} lastStep={lastStep}/>
         }
 
         {step === 3 &&
-            <Risks nextStep={nextStep}/>
+          <SignalLaunched nextStep={nextStep} lastStep={lastStep}/>
         }
-         {step === 4 &&
-            <SignalLaunched nextStep={nextStep}/>
-        }
-
-        {step === 5 &&
-            <InfoPerso nextStep={nextStep}/>
-        }
-        {step === 6 && 
-          <Maps/>
+       
+        {step === 4 && 
+          <Maps nextStep={nextStep} setStep={setStep}/>
         }
      
+      {step === 5 && 
+          <AlertClosed nextStep={nextStep} />
+        }
+        {step === 6 && 
+          <InfoPerso setStep={setStep} />
+        }
     </div>
+  </>
   );
 };
 

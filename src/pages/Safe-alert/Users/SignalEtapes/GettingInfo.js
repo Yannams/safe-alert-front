@@ -1,72 +1,121 @@
-import React, { useState } from "react"
-import { Button, Card, CardBody, Col, Row } from "reactstrap"
+import React, { useState } from "react";
+import { Button, Card, CardBody, Col, Row } from "reactstrap";
 
-
-     
-
-export default function GettingInfo({nextStep }) {
-   
-  const [selected, setSelected] = useState({});
-
+export default function GettingInfo({ nextStep, lastStep }) {
+  const [selected, setSelected] = useState(null);
+  const [other,setOther] = useState(false);
   const cards = [
-    { id: "incendie", icon: "mdi-fire", label: "Incendie" },
-    { id: "inondation", icon: "mdi-water", label: "Inondation" },
-    { id: "accident", icon: "mdi-car-traction-control", label: "Accident" },
-    { id: "malaise", icon: "mdi-hospital", label: "Malaise" },
+    { id: "incendie", icon: "mdi-fire", label: "Incendie", onClick: nextStep },
+    { id: "inondation", icon: "mdi-water", label: "Inondation", onClick: nextStep },
+    { id: "accident", icon: "mdi-car-traction-control", label: "Accident", onClick: nextStep },
+    { id: "malaise", icon: "mdi-hospital", label: "Malaise", onClick: nextStep },
+    { id: "autres", icon: "mdi-alert-decagram-outline", label: "Autres", setOther },
   ];
+  const [form, setForm] = useState({
+    incident: "",
+  });
 
-  
-    
-    return (
-  
-          
-        <React.Fragment>
-           <div className="text-center w-full h-100 d-flex flex-column">
-                <div className="mb-4 ">Vous signalez ? </div>
-                  <Row className="g-4 mb-4">
-                    {cards.map((item) => (
-                        <Col xs={6} key={item.id}>
-                        <label htmlFor={item.id} style={{ width: "100%" }}>
-                            <Card
-                            className={`rounded-5 text-center h-100 ${
-                                selected.id === item.id ? "bg-danger text-white" : ""
-                            }`}
-                            style={{
-                                cursor: "pointer",
-                                height: "180px", // ✅ toutes les cartes même hauteur
-                                transition: "all 0.3s ease",
-                            }}
-                            onClick={() => setSelected(item)}
-                            >
-                            <CardBody className="d-flex flex-column justify-content-center align-items-center h-100">
-                                <i
-                                className={`mdi ${item.icon} fs-1 ${
-                                    selected.id === item.id ? "text-white" : "text-danger"
-                                }`}
-                                />
-                                <span className="fw-semibold mt-2">{item.label}</span>
-                            </CardBody>
-                            </Card>
-                            <input
-                                type="checkbox"
-                                id={item.id}
-                                className="d-none"
-                                checked={selected === item.id}
-                                readOnly
-                            />
-                        </label>
-                        </Col>
-                    ))}
-                </Row>
-                <Row className="gap-3 mt-5">
-                    <Col xs={12}>
-                        <Button color="danger" outline className="w-100 rounded-pill p-3">Annuler</Button>
-                    </Col>
-                     <Col xs={12}>
-                        <Button color="danger"  className="w-100 rounded-pill p-3" onClick={()=>{nextStep({'incident':selected.id})}}>Suivant</Button>
-                    </Col>
-                </Row>
-            </div>
-        </React.Fragment>
-    )
+const handleSelect = (item) => {
+  setSelected(item.id);
+
+  // Appeler nextStep avec la bonne valeur
+  if (item.onClick) {
+    item.onClick({ incident: item.label }); 
+    // ou item.label si tu veux le texte "Incendie"
+  }
+
+  if (item.setOther) {
+    setOther(true);
+  }
+};
+
+
+  return (
+    <div className="text-center w-full h-100 d-flex flex-column">
+      <div className="mb-4 fs-4 mt-4 text-center">
+        sélectionner le type d'alerte ?
+      </div>
+
+      {!other ? 
+      <Row>
+        {cards.map((item) => (
+          <Col xs={12} key={item.id}>
+            <label htmlFor={item.id} style={{ width: "100%" }}>
+              <Card
+                className={`rounded-5 text-center ${
+                  selected === item.id ? "bg-danger text-white" : ""
+                }`}
+                style={{ cursor: "pointer", transition: "all 0.3s ease" }}
+                onClick={() => handleSelect(item)}
+              >
+                <CardBody>
+                  <div className="d-flex">
+                    <div
+                      className="bg-danger rounded-3 d-flex align-items-center justify-content-center p-3 me-5"
+                      style={{ width: "30px", height: "30px" }}
+                    >
+                      <i
+                        className={`mdi ${item.icon} fs-1 text-white`}
+                      />
+                    </div>
+
+                    <span className="fw-semibold mt-2">{item.label}</span>
+                  </div>
+                </CardBody>
+              </Card>
+
+              <input
+                type="checkbox"
+                id={item.id}
+                className="d-none"
+                checked={selected === item.id}
+                readOnly
+              />
+            </label>
+          </Col>
+        ))}
+      </Row>
+      :
+      <div className="h-100 d-flex flex-column justify-content-center">
+       <Row className="mt-4 gap-3">
+          {/* NOMBRE DE VICTIMES */}
+          <Col xs={12}>
+            <label htmlFor="nbrVictimes" className="ms-3 text-start w-100">
+             Décriver l'incident
+            </label>
+            <input
+              className="form-control p-3 rounded-5"
+              id="nbrVictimes"
+              type="number"
+              value={form.incident}
+              onChange={(e) =>
+                setForm({ ...form, incident: e.target.value })
+              }
+            />
+          </Col>
+        </Row>
+        <Button color="danger" className="w-100 rounded-5 p-3 mt-4"
+          onClick={() => {
+            nextStep({'incident': form.incident});
+          }}
+        >
+          Suivant
+        </Button>
+      </div>
+
+}
+      <Row className="gap-3 mt-5">
+        <Col xs={12}>
+          <Button
+            color="danger"
+            outline
+            className="w-100 rounded-pill p-3 border-0"
+            onClick={() => lastStep()}
+          >
+            Annuler
+          </Button>
+        </Col>
+      </Row>
+    </div>
+  );
 }

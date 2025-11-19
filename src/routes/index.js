@@ -320,15 +320,7 @@ const authProtectedRoutes = [
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
-  {
-    path: "/",
-    exact: true,
-    component: <Navigate to="/home"/>,
-  },
 
-
-  //Safe-alert
-  {path:"/home", component: <Home/>}
 ];
 
 const publicRoutes = [
@@ -360,6 +352,17 @@ const publicRoutes = [
   { path: "/auth-email-verification-2", component: <EmailVerification2 /> },
   { path: "/auth-two-step-verification", component: <TwostepVerification /> },
   { path: "/auth-two-step-verification-2", component: <TwostepVerification2 /> },
+
+
+  {
+    path: "/",
+    exact: true,
+    component: <Navigate to="/home"/>,
+  },
+
+
+  //Safe-alert
+  {path:"/home", component: <Home/>}
 ];
 
 export { authProtectedRoutes, publicRoutes };
