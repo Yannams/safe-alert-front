@@ -5,7 +5,7 @@ import { createSelector } from "reselect";
 import { Routes, Route } from "react-router-dom";
 import { layoutTypes } from "./constants/layout";
 // Import Routes all
-import { authProtectedRoutes, publicRoutes } from "./routes";
+import { AdminRoutes, authProtectedRoutes, publicRoutes } from "./routes";
 
 // Import all middleware
 import Authmiddleware from "./routes/route";
@@ -22,6 +22,7 @@ import "./assets/scss/theme.scss";
 // import { initFirebaseBackend } from "./helpers/firebase_helper";
 
 import fakeBackend from "./helpers/AuthType/fakeBackend";
+import AdminLayout from 'components/AdminLayout';
 
 // Activating fake backend
 fakeBackend();
@@ -93,6 +94,18 @@ const App = () => {
             element={
               <Authmiddleware>
                 <Layout>{route.component}</Layout>
+              </Authmiddleware>}
+            key={idx}
+            exact={true}
+          />
+        ))}
+
+        {AdminRoutes.map((route, idx) => (
+          <Route
+            path={route.path}
+            element={
+              <Authmiddleware>
+                <AdminLayout>{route.component}</AdminLayout>
               </Authmiddleware>}
             key={idx}
             exact={true}

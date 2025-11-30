@@ -174,6 +174,7 @@ import { components } from "react-select";
 
 //Safe alert
 import Home from "pages/Safe-alert/Users/Home";
+import Caserne from "pages/Safe-alert/Admin/Caserne";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
@@ -365,4 +366,8 @@ const publicRoutes = [
   {path:"/home", component: <Home/>}
 ];
 
-export { authProtectedRoutes, publicRoutes };
+const AdminRoutes = [
+  {path:"/caserne", component: <Caserne/>}
+];
+
+export { authProtectedRoutes, publicRoutes, AdminRoutes };
