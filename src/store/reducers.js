@@ -54,6 +54,11 @@ import DashboardBlog from "./dashboard-blog/reducer";
 //Dasboard job
 import DashboardJob from "./dashboard-jobs/reducer";
 
+//safe alert
+import alerts from "./safe-alert/alertes/reducer";
+import casernes from "./safe-alert/casernes/reducer";
+import pompiers from "./safe-alert/pompiers/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -75,7 +80,10 @@ const rootReducer = combineReducers({
   DashboardSaas,
   DashboardCrypto,
   DashboardBlog,
-  DashboardJob
+  DashboardJob,
+  alerts,
+  casernes,
+  pompiers
 });
 
 export default rootReducer;

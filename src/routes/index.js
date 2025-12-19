@@ -174,7 +174,9 @@ import { components } from "react-select";
 
 //Safe alert
 import Home from "pages/Safe-alert/Users/Home";
-import Caserne from "pages/Safe-alert/Admin/Caserne";
+import Caserne from "pages/Safe-alert/Admin/Caserne/Caserne";
+import DashboardAdmin from "pages/Safe-alert/Admin/Dashboard";
+import Pompiers from "pages/Safe-alert/Admin/Pompier/Pompiers";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
@@ -367,7 +369,9 @@ const publicRoutes = [
 ];
 
 const AdminRoutes = [
-  {path:"/caserne", component: <Caserne/>}
+  {path:"/admin", component: <DashboardAdmin/>},
+  {path:"/admin/casernes", component: <Caserne/>},
+  {path:"/admin/pompiers", component: <Pompiers/>}
 ];
 
 export { authProtectedRoutes, publicRoutes, AdminRoutes };

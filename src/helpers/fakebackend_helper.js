@@ -317,6 +317,20 @@ const onAddComment = (productId, commentText) => {
   });
 };
 
+//Safe Alerts
+
+//Alertes
+export const getAlerts = () => get(url.GET_ALERTS);
+  
+
+//Casernes
+//getCasernes
+export const getCasernes = () => get(url.GET_CASERNES);
+
+//Pompiers
+//getPompiers
+export const getPompiers = () => get(url.GET_POMPIERS);
+
 export {
   getLoggedInUser,
   isUserAuthenticated,

@@ -21,6 +21,9 @@ import dashboardSaasSaga from "./dashboard-saas/saga";
 import dashboardCryptoSaga from "./dashboard-crypto/saga";
 import dashboardBlogSaga from "./dashboard-blog/saga";
 import dashboardJobSaga from "./dashboard-jobs/saga";
+import alertsSaga from "./safe-alert/alertes/saga";
+import casernesSaga from "./safe-alert/casernes/saga";
+import pompiersSaga from "./safe-alert/pompiers/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -44,6 +47,9 @@ export default function* rootSaga() {
     fork(dashboardSaasSaga),
     fork(dashboardCryptoSaga),
     fork(dashboardBlogSaga),
-    fork(dashboardJobSaga)
-  ]);
+    fork(dashboardJobSaga),
+    fork(alertsSaga),
+    fork(casernesSaga),
+    fork(pompiersSaga),
+  ])
 }

@@ -20,8 +20,7 @@ const arrivalTime = "5 min";
 const center = { lat: 37.778519, lng: -122.40564 };
 
 
-export default function Maps({nextStep, setStep}) {
-  const [selected, setSelected] = useState(null);
+export default function Maps({nextStep, setStep, step}) {
   const [modal_center, setmodal_center] = useState(false);
 
   const tog_center = () => {
@@ -147,10 +146,10 @@ export default function Maps({nextStep, setStep}) {
 
                    <Row>
                     <Col xs={6}>
-                      <Button outline color="danger" className="w-100 p-3 rounded-5" onClick={()=>{setWhat(!what)}}> <i className="mdi mdi-alert-circle-outline me-2"></i>Guide</Button>
+                      <Button outline color="danger" className="w-100 p-3 rounded-5 h-100" onClick={()=>{setWhat(!what)}}> <i className="mdi mdi-alert-circle-outline me-2"></i>Guide</Button>
                     </Col>
                     <Col xs={6}>
-                      <Button  color="danger" className="w-100 p-3 rounded-5" disabled> <i className="mdi mdi-alarm-light me-2"></i>Alerte en cours...</Button>
+                      <Button  color="danger" className="w-100 p-3 rounded-5 h-100" disabled> <i className="mdi mdi-alarm-light me-2"></i>Alerte en cours...</Button>
                     </Col>
                   </Row>
 
@@ -189,7 +188,7 @@ export default function Maps({nextStep, setStep}) {
                <hr/>
              <div
                   ref={constraintsRef}
-                  className="rounded-pill bg-light p-2 mx-2"
+                  className="rounded-pill bg-light px-0"
                   style={{
                     height: "70px",
                     overflow: "hidden",
@@ -217,6 +216,8 @@ export default function Maps({nextStep, setStep}) {
                       if (info.point.x > 230) {
                         setCancelled(true);
                         setStep(0);
+                        console.log(step);
+                        
                       }
                     }}
                     className="bg-danger"
@@ -233,7 +234,7 @@ export default function Maps({nextStep, setStep}) {
                     :
                     <>
                       <i className="mdi mdi-chevron-triple-right fs-1 text-muted"></i>
-                      <span className="text-muted fw-bold">Glissez pour annuler l'alerte</span>
+                      <span className="text-muted fw-bold">Glissez pour annuler </span>
                     </>
 
                   }

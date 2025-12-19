@@ -16,9 +16,7 @@ export default function Signal({nextStep}) {
                             fontSize: '15px',
                             }}
                         ></i>
-                    </div>
-
-                  
+                    </div>    
                     <span className="text-danger fs-3 fw-bold">Safe alert</span>
                 </div>
                 <div className="d-flex flex-column justify-content-end align-items-center">

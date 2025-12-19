@@ -50,7 +50,7 @@ const TasksList = () => {
                       <h4 className="card-title mb-4">{item.name}</h4>
                       <div className="table-responsive">
                         <table className="table table-nowrap align-middle mb-0">
-                          <tbody>
+                          <tbody> 
                             {
                               item.cards.map((card, index) => (
                                 <tr key={index}>

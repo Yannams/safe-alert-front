@@ -32,7 +32,7 @@ function* fetchTasks() {
   try {
     const response = yield call(getTasks)
     yield put(getTasksSuccess(response))
-  } catch (error) {
+  } catch (error) { 
     yield put(getTasksFail(error))
   }
 }

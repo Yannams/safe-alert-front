@@ -46,6 +46,7 @@ import {
   cryptoOrderData,
   mailDB,
 } from "../../common/data"
+import { Alertes } from "common/data/alertes"
 
 let users = [
   {
@@ -147,7 +148,7 @@ const fakeBackend = () => {
     let finalToken = one.Authorization
 
     const validUser = users.filter(usr => usr.uid === user.idx)
-
+ 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Verify Jwt token from header.Authorization
@@ -1350,6 +1351,25 @@ const fakeBackend = () => {
       })
     })
   })
+
+
+  //Safe alerts 
+
+  //alertes
+  mock.onGet(url.GET_ALERTS).reply(() => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Alertes) {
+          // Passing fake JSON data as response
+          resolve([200, Alertes])
+        } else {
+          reject([400, "Impossible de charger les alertes"])
+        }
+      })
+    })
+  })
+
+
 }
 
 export default fakeBackend

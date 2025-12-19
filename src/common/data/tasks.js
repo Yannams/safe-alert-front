@@ -51,7 +51,7 @@ const tasks = [
         id: "3",
         title: "Create a Skote Logo",
         date: "15 Oct, 2019",
-        badgeText: "Waiting",
+        badgeText: "Waiting", 
         badgeColor: "secondary",
         budget: "86",
         imageTextColor: "bg-warning",

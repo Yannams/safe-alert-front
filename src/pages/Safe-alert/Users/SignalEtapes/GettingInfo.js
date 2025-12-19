@@ -31,18 +31,20 @@ const handleSelect = (item) => {
 
 
   return (
-    <div className="text-center w-full h-100 d-flex flex-column">
-      <div className="mb-4 fs-4 mt-4 text-center">
-        sélectionner le type d'alerte ?
+    <div className="w-full h-100 d-flex flex-column justify-content-between">
+      <div className="d-flex justify-content-center w-100">
+        <div className="fs-4 mt-4 text-center fw-bold" style={{width:"200px"}}>
+          Sélectionner le type d'alerte !
+        </div>
       </div>
 
       {!other ? 
-      <Row>
+      <Row className="gap-0 ">
         {cards.map((item) => (
           <Col xs={12} key={item.id}>
             <label htmlFor={item.id} style={{ width: "100%" }}>
               <Card
-                className={`rounded-5 text-center ${
+                className={`rounded-5 text-center mb-0 ${
                   selected === item.id ? "bg-danger text-white" : ""
                 }`}
                 style={{ cursor: "pointer", transition: "all 0.3s ease" }}
@@ -104,7 +106,7 @@ const handleSelect = (item) => {
       </div>
 
 }
-      <Row className="gap-3 mt-5">
+      <Row className="gap-3">
         <Col xs={12}>
           <Button
             color="danger"

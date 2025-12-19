@@ -124,3 +124,17 @@ export const ON_LIKNE_COMMENT = "/comments-product-action";
 export const ON_ADD_REPLY = "/comments-product-add-reply";
 
 export const ON_ADD_COMMENT = "/comments-product-add-comment";
+
+
+//Safe Alerts
+
+//Alerts
+export const GET_ALERTS = "/alertes";
+
+//Caserne
+export const GET_CASERNES = "/casernes"
+
+//Pompiers
+
+export const GET_POMPIERS = "/pompiers"
+

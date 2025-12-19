@@ -9,7 +9,7 @@ const layoutWidthTypes = {
   SCROLLABLE: "scrollable",
 }
 
-const layoutModeTypes = {
+const   layoutModeTypes = {
   DARK: "dark",
   LIGHT: "light",
 }

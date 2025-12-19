@@ -4,7 +4,6 @@ import LightData from "./LightData"
 import { Row, Col, Card, CardBody, CardTitle, CardSubtitle } from "reactstrap"
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
-
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 const containerStyle = {
